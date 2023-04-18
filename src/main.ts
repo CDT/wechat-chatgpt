@@ -39,7 +39,10 @@ async function main() {
       try {
         await chatGPTBot.onMessage(message);
       } catch (e) {
-        console.error(e);
+        if (e instanceof Error) {
+          message.say(`抱歉，我出错了，请重试：${e.message}`)
+          console.error(e.message);
+        }
       }
     });
   try {
